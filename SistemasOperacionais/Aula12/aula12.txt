@@ -1,0 +1,87 @@
+dispositivos de entrada - teclado, camera
+dispositivos de saida - impressora, monitor, caixa de som,
+dispositivos entrada e saida -  monitor touch, impressora multifuncional, pen drive
+
+comunicação homem - máquina: teclado, mouse, monitor
+comunicação entre máquinas: modem, placa de rede
+armazenamento de informação: disco rígido, dvd-rom, cd-rom, disquete, pen drive, fita
+
+podem ser divididos em duas categorias:
+dispositivos em blocos (estruturados): são dispositivos em que a máquiina envia dados em blocos, possuem tamanhos pré determinados, são as midias onde armazenamos dados
+cada informação enviada pelo dispositivo possui um endereço
+o tamanho pode variar entre 512 bytes e 32768 bytes
+permitem leitura e escrita independentemente de outros blocos
+permitem operações de busca
+
+dispositivos de caracter (não-estruturado): todos os dispositivos onde não armazenamos dados
+aceita uma sequencia de caracteres
+//terminar
+
+dispositivos conectam-se através de barramentos ao processador
+as arquiteturas mais modernas possuem um barramento que liga a memória ram direto ao processador
+a maioria dos computadores separa o controle do barramento
+ponte norte e ponte sul
+tudo precisa passar pela ponte norte
+ponte norte liga dispositivos a uma alta velocidade
+os demais dispositivos estão na ponte sul
+a maioria dos dispositivos de I/O tem partes mecânicas e eletrônicas
+a parte eletrônica é chamada de controlador do dispositivo
+as vezes podemos ter um controlador que controla diversos dispositivos
+o papel do controlador é converter fluxo serial de bits em bloco de bytes, executar toda correção de erro necessária, tornar o bloco disponível para ser copiado para a memória principal
+possuem registradores internos e alguns possuem uma memória interna (buffer (area na memória onde armazenamos informações))
+
+como o SO pode se comunicar com o dispositivo
+portas I/O
+portas I/O podem ser a parte, no linux (ou geral??) são faixas de endereços na memória associada a um dispositivo
+o mais comum é usar uma parte da RAM como espaço I/O
+
+polling
+antes da interrupção
+periodicamente, o So em execução na CPU, efetua o polling
+pergunta a cada controlador de dispositivo se há algo a ser tratado
+ou se alguma operação que estava senod feita já chegou ao fim
+
+interrupção
+controlador de dispsitivo envia uma IRQ (solicitação de interrupção) à CPU, quando há algo a ser tratado ou quando terminou de realizar alguma operação
+IRQ 1 e endereço da memória que irá tratar essa interrupção
+o processador sabe qual a próxima interrupção a ser executada
+a interrupção é como dar a aula aqui, levantar a mão e interromper para uma pergunta
+o polling é como um combinado onde ninguém pode perguntar (interromper) e de 15 em 15 pergunta se tem dúvidas
+
+DMA
+direct memory access - componente de hardware que controla a transaferencia da memória para um dispositivo ou do dispositivo para a memória
+libera a CPU de contorlar a tranferência, permitindo que outro processo seja executado na CPU
+tem a ver com a multiprogramação (no começo, o SO só coloca um programa na memória, como só um JOB estava na memória, só ele pdoeria ser executado, a multiprogramação é quando o SO passou a colocar mais de um programa na memória, isso é a multiprogramação, e se chama assim pq tem mais de um programa na memória e mais de um pode ser executado)
+leitura e gravação é o DMA que controla atualmente (antigamente era o processador)
+o que possibilitou a multiprogramação é que o SO começou a controlar a memória de maneira que ele poderia colocar mais processos na memória
+
+desenho de interrupções
+quando o processador está tratando uma interrupção, ele não pode tratar outras pois a interrupção não pode ser interrompida
+enquanto o processador não envia uma resposta avisando que está tratando a interrupção, ela fica mandando mensagem (antes)
+agora temos um controlador de interrupção, então se chega outra interrupção enquanto o processador trata uma, esse controlador coloca todas em fila
+
+desenho do DMA
+
+camadas de software de I/O
+desenho 
+sem o device drivers o SO não consegue conversar com dispositivos
+são vários device drivers
+embora o device driver não seja criado pelo SO, ele é reconhecido como um módulo do SO
+o sistemas de arquivos que dita as regras, nome de diretorio, tamanho, nome de arquivo. Tudo que envolve diretório, sistema de arquivos que controla
+
+funções do subsistema de I/O
+
+interface uniforme para os drivers dos devices
+armazenamento em buffer
+relatório dos erros
+alocação e liberaçã de dispsitivos dedicados (não compartilhados)
+fornecimento de tamanho do bloco independente...
+o driver do dispositivo que se adaptada pra conversar com o SO
+
+buferização (buffering)
+
+drivers dos dispositivos (device drivers)
+qual sua função?
+a comunicação entre os drivers e os controladores de dispositivos é feita por meio do barramento
+traduz os comandos de SO para o controlador
+inicializa e gerencia o dispositivo

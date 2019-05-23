@@ -1,0 +1,86 @@
+SWAP 
+Quando a memória principal está cheia o SO envia pro HD um processo que não está sendo tão referenciado e onde o programa novo iria caber
+Como se fosse uma extensão da memória principal quando ela está cheia
+No Linux - Swap mesmo
+No Windows - Arquivo de Paginação
+
+Memória Virtual
+Técnica criada pensando justamente no espaço da memória principal
+Memória virtual é a combinação da memória principal com a memória do disco
+Com isso, conseguimos executar programas que precisam de mais memória do que o disponível
+A técnica consiste em não iniciar o processo inteiro, ele carrega uma parte do aplicativo o suficiente para ele executar
+Quando é necessário usar a parte que não foi carregada, o SO vai atrás dela
+É a combinação do espaço em disco e RAM
+//Gráfico do processo
+Parte do executável iniciado continua no disco e o necessário está na RAM
+Não carregamento o processo inteiro na memória, é necessário um mapeamento 
+//Conceito de endereço físico e lógico
+Endereço virtual = endereço lógico
+
+Mapeamento
+Mecanismo de traduzir o endereço virtual para o real
+MMU que faz o mapeamento
+
+Memória Virtual - Implementação
+Técnicas principais:
+Paginação: Os blocos possuem o mesmo tamanho, e esses bloquinhos são chamados de páginas
+Segmentação: Os blocos são de tamanhos variados
+Segmentação com paginação: Hibrído
+
+Memória Virtual por paginação
+Programa e memória são divididos em páginas (bloco do mesmo tamanho)Faltou PF
+Tabela de páginas
+
+Como converter endereço virtual para o físico
+
+Conversão de endereço virtual em real
+//imagem
+
+Page Fault (Falha de página)
+Se não está na memória, vai ter um bit 0 (bit de validade que compoe o registro da tabela de páginas)
+Processo estava em execução e passa pro estado de Espera até ser carregada
+
+Política de substituição de páginas
+Windows põe limite de páginas por processo
+Se atingir esse limite, o Swap ocorrerá mesmo assim por mais que ainda haja espaço em memória
+Na tabela de página te um bit de modificação indicando se houve modificação
+Pois se houve modificação tem que salvar no disco
+Quando uma página é substituída ela não é sobrescrita imediatamente
+Ela é colocada num pool de páginas livres e fica nesse conjunto um tempo
+Conforme vai chegando mais páginas livres, a fila anda
+Quando é feito o swap nem sempre a memória ta cheia
+
+Pode ocorrer fragmentação interna quando tiver um espaço livre no final
+
+Qual o melhor tamanho de página?
+Normalmente está associado com a arquitetura do hardware
+
+Proteção de memória
+Impossível um processo acessar área de memória de outro sem permissão
+Bit de proteção
+É possível compartilhar dados na memória principal
+
+Memória virtual por segmentação
+Paginação = blocos de mesmo tamanho
+Segmentação = blocos variados
+Cada bloco é chamado de segmento
+Divide logicamente em setores (método pode ser um bloco)
+
+Memória virtual por segmentação
+Divide o programa em segmentos de acordo com o conteúdo do código
+Registro na tabela de segmentos contém: 
+--
+--
+--
+--
+--
+--
+Como dividimos o segmentos com 
+podemos definir um segmento e se ele crescer nós conseguimos aumentar
+//No caso da paginação, não precisa de best-fit...
+Problema da fragmentação externa
+Paginação X Segmentação
+//Tabela
+
+Gerência de memória no Windows
+Não grava página por página

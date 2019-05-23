@@ -1,0 +1,8 @@
+processo pode ser dividido em threads
+
+qual a vantagem? realizar diversas coisas na mesma pagina ou app
+
+condição de disputa
+solução era exclusão mútua. analogia: que somente um poderia fazer uso
+tínhamos que identificar no código a região crítica, onde somente uma thread poderia executar o processo no momento
+tem que esperar o processo terminar de executar para que o próximo também o faça

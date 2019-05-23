@@ -1,0 +1,60 @@
+o processador tenta manter o maior numero de processos na memória para ter mais desempenho
+quanto mais processos na memória há mais recursos compartilhados
+a quantidade da memória principal sempre foi bem escassa
+sempre foi um recurso muito importante mas muito pequeno
+o pessoa que desenvolvia SO se preocupando em permitir a execução de programas maiores do que o espaço disponível (virtual memory)
+o SO tem que se preocupar com a proteção, então um processo n pode escrever nada na area da memória de outro
+
+hierarquia de memória
+
+volátil = se desligar energia perde os dados
+não-volátil = se desligar não perde
+
+o processador quer nos ajudar a ter o melhor desempenho possível
+
+principio da localidade temporal diz que se você tem um programa e acessou determinada espaço da memória do programa, você irá acessa-lo novamente
+num curto espaço de tempo você acessa mais de uma vez
+
+principio da localidade espacial diz que se você acessou determinado espaço da memória, irá acessar uma posição vizinha a ela
+
+o processador acessa primeiro a cache 1, se n tiver ele vai até a 2, se não tiver ele vai até a 3, se não tiver ele vai até a RAM 
+em todo o processo ele vai trazendo e populando o nível superior
+
+MMU - managment memory unit
+
+MMU é componente de hardware, é como se fosse o contorlador da memória, componente de hardware analisa os endereços lógicos solicitados pelo processador e converte para os físicos, pode ser ajustada para permitir acesso somente à área de memória definida para cada processo
+MMU verifica se o endereço é válido, se n for envia uma inerrupção, transforma o endereço lógico no físico
+endereço lógico é o endereço hexa do programa, endereço da instrução referente ao programa
+endereço físico é o endereço hexa do programa na memória, endereço real da instrução na memória
+
+alocação particionada estática
+alocação particionada dinâmica
+
+memória é divida em partições de tamanho fixo
+a primeira solução criada na memória após a multiprogramação foi a partição na memória
+SO tinha uma tabela com as partições e seus respectivos tamanhos
+havia um problema, a fragmentação interna
+o programa só poderia ser colocado no inicio de uma partição, então se houvesse espaço livre, outro programa n seria alcoado
+é quando temos um espaço ocioso e não conseguimos usar, e esse espaço está dentro da partição
+
+na dinâmica, não existe partições antes da máquina ser ligada, cada prohrama utiliza o espaço necessário
+criar partições conforme a necessidade
+memória livre perdida fora da área alocada por um processo
+fragmentação externa é quando sobra espaço ocioso mas não consigo aproveitar para usar um programa
+uma solução seria esperar um programa ser finalizado para ter uma partição maior
+outra solução é a realozação, mas isso na época tinha um custo muito grande
+
+estratégias de alocação de partição
+o SO montava uma tabela para gerenciar as áreas livres da memória
+Primeira estratégia: Estratégia Best Fit (onde melhor couber) se o SO adota essa estratégia o SO coloca o programa onde sobrar menos espaço
+a longo prazo essa não é a melhor estratégia pois vai sobrando pequenos espaços na memória, a memória ficaria cheia de espaços pequenos que não conseguiríamos aproveitar
+Segunda estratégia: Estratégia Worst-Fit (onde pior couber) o 
+a longo prazo é a melhor estratégia, pois sobra mais espaço
+Terceira estratégia: First-Fit (onde primeiro couber) coloca no primeiro lugar que couber o programa
+
+Swapping
+Se a memória está cheia e outro programa quer entrar, ele escolhe o programa mais ocioso e salva em disco e o que deseja entrar vai pra memória
+no linux, por padrão, já é reservado uma partição para realizar o Swap
+no caso do windows, é chamado de arquivo de paginação
+
+quando um programa está na memória n é só o código, é o código e as variáveis

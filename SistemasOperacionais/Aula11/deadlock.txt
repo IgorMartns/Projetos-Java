@@ -1,0 +1,43 @@
+exclusão mútua delimita que dois processos n podem acessar um mesmo recurso crítico
+muitas vezes um processo fica utilizando um recurso por muito tempo
+
+processo D está usando T e deseja usar um recurso U
+
+deadlock = impasse
+
+recursos preemptivos
+recursos não-preemptivos
+
+preempção = tirar a força
+
+quando starta um app o SO põe na RAM
+todos os processos usam a memória ram
+porém pode acontecer de a memória estar cheia e você executar um novo processo
+o SO verifica todos os processos na memória e verifica qual o mais ocioso ele pega um pedaço desse processo e grava em disco (HD)
+o SO vai fazer o possível para liberar memória pra você
+Memória RAM é um recurso preemptivo
+a área de SWAP é pra realizar essa troca (linux)
+esse processo que foi pro disco pode voltar a ser executado em algum momento, aí o SO volta o processo pra RAM e caso esteja cheia, tira outro processo e joga pro HD
+nunca nada é executado do HD, sempre da RAM
+
+recursos não preemptivos são os que não podemos tirar do processo
+exemplo CD-ROM
+o deadlock ocorre com recurso não-preemptivos, pois com os preemptivos o SO pode intervir e dar um jeito
+
+
+quatro condilçoes que devem ocorrer para que um deadlock exista:
+a primeira é a implrementação da exclusão mútua, pois por conta dela somente um processo pode usar um recurso por vez
+a segunda é a posse e espera (hold and wait) os processo estão utilziando um recurso e de posse de um recurso ele pode pedir outro
+a terceira não-preempção, os recursos envolvidos em deadlock são não-preemptivos, e somente os processo que alocaram é que podem tirar
+ultimo é espera circular, quando existe vários processos aguardando a liberação de novos recursos, um aguardando o outro
+quando essas quatro condições estão presentes, é favorecido o aparecimento do deadlock
+
+
+soluções
+primeira estratégia: igorar o problema (estrégia do avestruz), não fazer nada. maioria dos SO's usam, pois viram que é baixa a frequência em que acontece, n valia a pena (unix e windows)
+segudna é detectar e se recuperar do problema. ela n tenta prevenir, ela deixa rolar e fica monitorando pra ver se aconteceu, e se aconteceu tenta recuperar, se detectar todo o deadlock as soluções são. rollback/preempção do recurso/eliminar o processo
+terceira é evitar dinamicamente o problema, ele trabalha com a prevenção, pois ele tenta evitar o deadlock. isso é trabalhar tipo o jogador de xadrez, analisa as possibilidades possíveis. algoritmo do banqueiro. se o SO detectar que pode ocorrer o deadlock, ele da uma segurada
+a quarta estratégia é verificar aquelas condições e atacar uma delas (não é viável atacara a exclusão mútua, não é viável o uso e espera pois o processo n sabe quais recursos ele utilizará, na não-preempção não é legal tirar um recurso de um processo) a conclusão é que n da pra atacar uma das quatro condições, por isso a do avestruz é mais adotada
+com a do avestruz podemos detectar o deadlock através de tela azul, ou programa n responde
+quando foi adotada a do avestruz, ocorreu uma análise
+deadlock pode ocorrer em processos (BD, SO) comumente associado a SO

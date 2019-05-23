@@ -1,0 +1,2 @@
+estrutura de SO em diante (monolitico, em camadas, kernel)
+vai cair tudo desde estrutura de SO até hoje

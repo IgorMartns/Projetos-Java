@@ -1,0 +1,10 @@
+FCFS - First Come First Served
+FIFO - First In First Out
+Critério de escolha é a ordem de chegada
+
+Tempo médio execução - Turnaround
+
+
+SJF - Shortest Job First
+Não da pra aplicar porquê não da pra saber a duração da tarefa
+Com o quantum é aplicável, mas não utilizado

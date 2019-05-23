@@ -1,0 +1,26 @@
+troca de contexto
+
+módulo do SO que salva e carrega o contexto: despachante 
+
+módulo do SO que seleciona o processo que vai entrar em execução: escalonador
+
+
+Era assim antes do time-sharing
+estado do processo é uma das informações importante do contexto de software
+
+enquanto o programa está no estado NOVA o SO está alocando o espaço na PCB, o SO termina de carregar na memória
+
+PRONTA está pronto pra ser executado esperando ser escalonado
+no estágio PRONTA, pode ter vários programas
+
+EXECUTANDO ou EM EXECUÇÃO, quando o programa é escalonado pelo SO e selecionado para executar
+se enquanto está em execução ele for finalizado, entra no estado TERMINADA ou FINALIZADA, quando está nesse estado o SO libera PCB 
+pra ele ser finalizado ele tem que estar no estado EXECUTANDO
+quando entra em processo de SAVE (E/S) entra no estado de BLOQUEADA ou EM ESPERA ou SUSPENSA
+quando termina a operação de E/S vai para PRONTA
+
+Depois do time-sharing
+
+quando o programa entra EM EXECUÇÃO o SO fica monitando seu tempo, fim do QUANTUM ou TIME-SLICE ele volta para PRONTA e troca de contexto
+
+starvation - fome de processador

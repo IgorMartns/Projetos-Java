@@ -1,0 +1,80 @@
+HD é composto por vários discos que giram em torno de um eixo
+Disco tem uma quantidade de trilhas por conta dos vários discos
+HD tem x cilindros
+Um pedaço da trilha é um setor
+Cabeçote é o que grava e lê
+
+Diferença entre dispositivos de bloco x caracter
+Bloco é aquele que manda a informação pro dispositivo em blocos, eles são de tamanho fixo pra determinado dispositivo, envia informação e ela fica armazenada naquele dispositivo
+HD é de bloco, SSD, pen drive
+
+Os demais dispositivos são de caracter
+Até podemos enviar um bloco mas de tamanhos variados
+Modem é de caracter, 
+
+Tamanho do disco =  número de cabeças (faces) *  número de cilindros (falta terminar)
+
+Discos magnéticos
+Grande evolução com relação a velocidade, capacidade e preço
+
+Tempo de seek = braço indo até o cilindro
+Tempo de latência = informação vai demorar pra rotacionar e chegar até onde deve chegar
+
+Tempo de latência média 
+tempo que a informação vai girar até ficar em baixo do cabeçote
+
+Capacidade do disco
+Calculo da capacidade
+Cilindros = quantidade de trilhas
+Cabeçotes, se sabe a quantidade sabe as faces
+Setores = pedaços da trilha
+C * H * S * 512
+
+Escalonamento de disco
+Algoritmos de escalonamento de disco
+Ordem que vai atender as trilhas que o controlador recebe
+SSdF se ele e ta numa determinada trilha, vai atender a mais proxima, atende conforme a proximidade do cabeçote
+Elevator tem vários = Cabeçote vai da trilha 0 até a ultima e volta
+Pelo alforitmo FCFS ele vai atender as trilhas
+Quando é feito esse escalonament...
+Segundo algoritimo é o que atender a lugar mais próximo , antes de atender n... pode gerar starvation
+Terceiro algoritmo é o Scan ou Elevator, temos que saber qaul a direção que ele está indo, pois vai atender conforme estão na fila, confore um elevador mesmo
+
+Sistemas RAID
+Raid com disco e ssd
+HD usados para grandes volumes de dados
+Apesar do avanço dos dispositivos baseados em memória flash
+Desempenho não evoluiu na mesma velocidade que processador, memória, barramento, deixa a desejar
+Problema de confiabilidade, por ser mecânico, não é legal andar com o HD rodando
+SSD n tem esse BO
+Sistemas RAID é antigo
+Pensaram em unir mais de um disco
+Pensando que os discos n tinham tanta capacidade, pensarma em formas de unir dios discos
+Raid nada mais é do que um conjutno de discos
+Quando unimos vários discos, a ideia é aumentar a confiabilidade
+Existem vários níveis de RAID
+RAID Reduntant Array of Inexpensive Disks(Conjunto reduntante de disco econômico)
+Nada mais é que um conjunto de dois um mais discos rígidos ou SSD
+Quando formamos esse conjunto e dizemos que ele é um RAID, o SO e os App enxergam como se fosse algo único
+O SO não vai enxergar 5 discos, mas um discão
+Objetivo é proporcionar mais capacidade, desempenho e confiabilidade
+É possível fazer com Hardware e com Software
+Hoje, o próprio Windows permite fazer RAID
+Níveis de Raid, formas de organizar os discos
+Mais usados
+Raid 0: O SO e os Apps enxergam o discão, todo o espaço dos três discos é usado para armazenar dados e não há redundância, 100% do espaço é para dados, espaço muito bom, pois é a combinação dos discos do conjunto, porém a confiabilidade é ruim, ele trabalha em faixas, os discos não precisam ser de tamanhoa iguais, mais suscetível a erros
+Raid 1: Raid 1 puro funciona apenas com 2 discos, um disco é dado e outro é backup, usa metade do espaço para backup, isso é um Mirror ou espelhamento, cada disco físico possui espelho, boa confiabilidade pois os dados estão divididos, perde desempenho pois escreve em dois discos, alto custo, pois perco desempenho, se tiver mais que 2 discos, sempre que tiver mais de 2 ele usa o Raid 1 combinado com o 0, se o 1 snyrdantrd, 
+Raid 3: Não é muito usado pois divide em bytes e não em bloco, dado de qualidade é feito um cálculo bit a bit, o valor é calculado de tal maneira que é possível recuperar 
+Raid 3, 4 e 5 trabalham assim
+Raid 5: Conta é a mesma do Raid 3 (pegar a conta), um disco do conjunto a gente perde para armazenar dados de qualidade, armazenados em multiplos disco
+Raid 6: Avanço do 5, ele grava dados de qualidade e espalha, mas também grava dados de correção de erro e também são espalhados, no total, 2 discos são perdidos
+Raid 0 + 1 ou 1 + 0
+Raid 0 = striping
+Raid 1 = mirroring
+Sempre que for 1 é 50% da capacidade
+
+Spare
+Num conjunto RAID normalmente podem colocar um disco SPARE
+SPARE é com se fosse o Setp do carro, é o reserva
+Não é contabilizado na produção
+Não é contabilizado para se calcular a capacidade para armazenar dados

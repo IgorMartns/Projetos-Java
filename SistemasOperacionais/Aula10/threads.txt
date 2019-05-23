@@ -1,0 +1,102 @@
+década de 80 começou a thread +/-
+
+processo é sinonimo de tarefa
+processo está em execução pode criar outros processos (antigamente e no linux)
+um processo fixo no linus que fica rodando e cria o ls
+
+thread é como se fosse um subprocesso ou tarefa
+compartilha o contexto de software do pai
+
+programa: codigo (receita do bolo)
+processo: programa em exec (preparo do bolo)
+threads: tarefas de um processo (preparar a massa do bolo, preparar o recheio do bolo, preparar a cobertura do bolo)
+
+modelo de threads N:1
+era uma api que fornecia como usar threads pois o SO nao reconhecia
+
+modelo de threads: 1:1
+a partir do momentos que os apps passaram a usar, o SO passou a ser multithread (maioria dos SO)
+
+modelo de threads N:M
+modelo hibrido, pega o melhor dos dois modelos
+
+
+
+no modelo n:1
+api: GNU portable threads
+SO n oferece suporte
+os vários threads de um processo correspodem a um thread do núcleo
+é como uma linha de execução (carlos maziero)
+N processos 1 thread no SO
+
+desvantagens:
+
+divisão injusta de recursos
+processo todo ficava suspenso (entrada e saída), pq n era visto como uma thread
+imagina que a máquina tem mais de um processador, o SO n consegue rodar as diversas threads em outros núcleos, somente os processos
+
+vantagens: 
+
+ponto de vista do SO: n tem tanto trabalho, pq independente do número de threads, o SO vai reconhcer apenas um processo
+gerencia por parte do núcleo é pequena
+escalabilidade (mais threads) n é BO
+
+
+
+no modelo 1:1
+
+SO tem suporte a threads
+sem necessidade de bibliotecas
+cada thread do user corresponde a um thread do núcleo
+quantum é aplicado a thread e n ao processo
+mesmo contexto de software do processo
+diferente contexto de hardware
+
+vantagens:
+quando tem IO n ocorre bloq nas demais threads
+divisao justa dos recursos
+mais de um processador pode executar threads diferentes de uma mesma aplicacao
+
+desvantagens:
+1
+2
+
+
+
+no modelo N:M
+
+SO tem suporte a threads
+volta a ter a API no modo user
+mais flexivel
+N threads do user correspondem a M threads do núcleo
+o SO cria outras threads para atender o processo
+o SO n chaveia mais
+
+vantagens: 
+n tem bloq quando ocorre IO
++ de um processador pode executar threads diferentes
+escalabilidade é possível
+
+desvantagens:
+1
+2
+
+
+
+Sinc ou coordenacao de processos
+pode ser que os processos acessem o mesmos recursos de forma concorrente
+os processos tem que ser executados de maneira que n haja inconsistencia
+
+race conditions (condicoes de corrida ou disputa)
+mais de uma thread compartilhando o mesmo espaço de memória
+a inconsistencia acontece quando o processo vai e escreve uma informação
+se for só de leitura n tem BO
+o erro ocorre durante o chaveamento
+
+
+ 
+
+
+
+
+
